@@ -6,7 +6,11 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    getStashpoints('London');
+    const { updateStashpoints } = this.props;
+    getStashpoints('London')
+      .then(res => updateStashpoints(res))
+      //TODO: remove this console log after data is being rendered to the screen
+      .then(() => console.log('data:', this.props.stashpointsData));
   }
 
   render() {

@@ -8,7 +8,5 @@ const checkResponse = response => {
 
 export const getStashpoints = city => {
   const stasherURL = 'https://api-staging.stasher.com/v1/stashpoints';
-  return fetch(`${stasherURL}?city=${city}`)
-    .then(checkResponse)
-    .then(res => console.log(res));
+  return fetch(`${stasherURL}?city=${city}`).then(checkResponse);
 };
