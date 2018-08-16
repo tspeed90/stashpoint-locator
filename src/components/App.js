@@ -7,13 +7,30 @@ export default class App extends Component {
 
   componentDidMount() {
     const { updateStashpoints } = this.props;
-    getStashpoints('London')
-      .then(res => updateStashpoints(res))
-      //TODO: remove this console log after data is being rendered to the screen
-      .then(() => console.log('data:', this.props.stashpointsData));
+    getStashpoints('London').then(res => updateStashpoints(res));
   }
 
   render() {
-    return <div>Soon to be stashpoints!</div>;
+    const { stashpointsData } = this.props;
+    return (
+      <article>
+        <h1>Stashpoints in Your Area</h1>
+        {stashpointsData.map(location => {
+          return (
+            <div key={location.id}>
+              <img src={location.photo} alt={`${location.name} stashpoint`} />
+              <br />
+              {location.name}
+              <br />
+              Address: {location.address}
+              <br />
+              {location.postalCode}
+              <br />
+              Open 24 Hours? {location.open24Hours === true ? 'Yes' : 'No'}
+            </div>
+          );
+        })}
+      </article>
+    );
   }
 }
