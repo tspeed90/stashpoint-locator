@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getStashpoints } from '../utils/getStashpoints';
+import { requestLocation } from '../utils/getLocation';
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -7,7 +8,12 @@ export default class App extends Component {
 
   componentDidMount() {
     const { updateStashpoints } = this.props;
-    getStashpoints('London').then(res => updateStashpoints(res));
+    requestLocation()
+      .then(position =>
+        getStashpoints(position.coords.latitude, position.coords.longitude)
+      )
+      .then(res => updateStashpoints(res))
+      .catch(err => alert(`Unable to find your location: ${err}`));
   }
 
   render() {

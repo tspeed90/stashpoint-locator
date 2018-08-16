@@ -6,9 +6,11 @@ const checkResponse = response => {
   return response.json();
 };
 
-export const getStashpoints = city => {
+export const getStashpoints = (lat, long) => {
   const stasherURL = 'https://api-staging.stasher.com/v1/stashpoints';
-  return fetch(`${stasherURL}?city=${city}`)
+  return fetch(
+    `${stasherURL}?centre_lat=${lat}&centre_lon=${long}&nearby_radius=5`
+  )
     .then(checkResponse)
     .then(response => {
       response = response.map(location => ({
