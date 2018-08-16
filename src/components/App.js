@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { getStashpoints } from '../utils/getStashpoints';
 import { requestLocation } from '../utils/getLocation';
+
+import styles from './App.css';
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -19,24 +21,24 @@ export default class App extends Component {
   render() {
     const { stashpointsData } = this.props;
     return (
-      <article>
-        <h1>Stashpoints in Your Area</h1>
+      <main>
+        <h1 className={styles.heading}>Luggage Storage Near You</h1>
         {stashpointsData.map(location => {
           return (
-            <div key={location.id}>
+            <article key={location.id} className={styles.stashpoint}>
               <img src={location.photo} alt={`${location.name} stashpoint`} />
               <br />
-              {location.name}
-              <br />
-              Address: {location.address}
-              <br />
-              {location.postalCode}
-              <br />
-              Open 24 Hours? {location.open24Hours === true ? 'Yes' : 'No'}
-            </div>
+              <div className={styles.details}>
+                <h2>{location.name}</h2>
+                <br />
+                Address: {location.address} {location.postalCode}
+                <br />
+                Open 24 Hours? {location.open24Hours === true ? 'Yes' : 'No'}
+              </div>
+            </article>
           );
         })}
-      </article>
+      </main>
     );
   }
 }
