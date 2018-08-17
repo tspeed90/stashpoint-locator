@@ -31,9 +31,17 @@ export default class App extends Component {
               <div className={styles.details}>
                 <h2>{location.name}</h2>
                 <br />
-                Address: {location.address} {location.postalCode}
+                <p className={styles.label}>Address:</p> {location.address}{' '}
+                {location.postalCode}
                 <br />
-                Open 24 Hours? {location.open24Hours === true ? 'Yes' : 'No'}
+                <p className={styles.label}>Cost for First Day:</p>{' '}
+                {location.firstDayPrice} {location.currency}
+                <br />
+                <p className={styles.label}>Cost for Additional Days:</p>{' '}
+                {location.additionalDayPrice} {location.currency}
+                <br />
+                <p className={styles.label}>Open 24 Hours?</p>{' '}
+                {location.open24Hours === true ? 'Yes' : 'No'}
               </div>
             </article>
           );

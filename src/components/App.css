@@ -14,7 +14,7 @@ main {
   font-size: 2rem;
   text-transform: uppercase;
   max-width: 11rem;
-  padding: 1rem;
+  padding: 2rem;
   align-self: center;
   margin: 0 auto;
 }
@@ -40,4 +40,15 @@ main {
 h2 {
   padding: 0;
   margin: 0;
+}
+
+p {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.label {
+  font-weight: bold;
+  line-height: 1.3rem;
 }
