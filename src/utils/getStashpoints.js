@@ -9,7 +9,7 @@ const checkResponse = response => {
 export const getStashpoints = (lat, long) => {
   const stasherURL = 'https://api-staging.stasher.com/v1/stashpoints';
   return fetch(
-    `${stasherURL}?centre_lat=${lat}&centre_lon=${long}&nearby_radius=3`
+    `${stasherURL}?centre_lat=${lat}&centre_lon=${long}&nearby_radius=3&sort=by_distance`
   )
     .then(checkResponse)
     .then(response => {
@@ -20,8 +20,8 @@ export const getStashpoints = (lat, long) => {
         postalCode: location.postal_code,
         photo: location.photos[0],
         open24Hours: location.open_twentyfour_seven,
-        firstDayPrice: location.pricing_structure.first_day_cost,
-        additionalDayPrice: location.pricing_structure.extra_day_cost,
+        firstDayPrice: location.pricing_structure.first_day_cost / 100,
+        additionalDayPrice: location.pricing_structure.extra_day_cost / 100,
         currency: location.pricing_structure.ccy
       }));
       return response;
