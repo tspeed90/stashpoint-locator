@@ -1,4 +1,4 @@
-# STASHER TECH TEST
+# STASHPOINTS LOCATOR
 
 [See it live](https://stashpoint-locator.netlify.com/)
 
